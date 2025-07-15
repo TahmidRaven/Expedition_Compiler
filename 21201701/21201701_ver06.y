@@ -498,7 +498,13 @@ void yyerror(char *s)
 
 int main(int argc, char *argv[])
 {
-	
+cout << endl;
+cout << "===================================================" << endl;
+cout << "|Expedition Compiler  For All Those Who Come After|" << endl;
+cout << "|      Created by TahmidRaven & MehediTorno       |" << endl;
+cout << "===================================================" << endl;
+
+
 	if(argc != 2) 
 	{
         cout<<"Please provide input file name"<<endl;
