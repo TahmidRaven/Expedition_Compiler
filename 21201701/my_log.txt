@@ -1,0 +1,243 @@
+Line no 1: Token <INT> Lexeme int found
+
+At line no: 1 type_specifier : INT 
+
+int
+
+Line no 1: Token <ID> Lexeme bar found
+
+Line no 1: Token <LPAREN> Lexeme ( found
+
+Line no 1: Token <INT> Lexeme int found
+
+At line no: 1 type_specifier : INT 
+
+int
+
+Line no 1: Token <ID> Lexeme a found
+
+At line no: 1 parameter_list : type_specifier ID 
+
+int a
+
+Line no 1: Token <RPAREN> Lexeme ) found
+
+Line no 2: Token <LCURL> Lexeme { found
+
+Line no 3: Token <RETURN> Lexeme return found
+
+Line no 3: Token <ID> Lexeme a found
+
+Line no 3: Token <SEMICOLON> Lexeme ; found
+
+At line no: 3 variable : ID 
+
+a
+
+At line no: 3 factor : variable 
+
+a
+
+At line no: 3 unary_expression : factor 
+
+a
+
+At line no: 3 term : unary_expression 
+
+a
+
+At line no: 3 simple_expression : term 
+
+a
+
+At line no: 3 rel_expression : simple_expression 
+
+a
+
+At line no: 3 logic_expression : rel_expression 
+
+a
+
+At line no: 3 expression : logic_expression 
+
+a
+
+At line no: 3 statement : RETURN expression SEMICOLON 
+
+return a;
+
+At line no: 3 statements : statement 
+
+return a;
+
+Line no 4: Token <RCURL> Lexeme } found
+
+At line no: 4 compound_statement : LCURL statements RCURL 
+
+{
+return a;}
+
+At line no: 4 func_definition : type_specifier ID LPAREN parameter_list RPAREN compound_statement 
+
+int bar(int a){
+return a;}
+
+At line no: 4 unit : func_definition 
+
+int bar(int a){
+return a;}
+
+At line no: 4 program : unit 
+
+int bar(int a){
+return a;}
+
+Line no 6: Token <INT> Lexeme int found
+
+At line no: 6 type_specifier : INT 
+
+int
+
+Line no 6: Token <ID> Lexeme main found
+
+Line no 6: Token <LPAREN> Lexeme ( found
+
+Line no 6: Token <RPAREN> Lexeme ) found
+
+Line no 7: Token <LCURL> Lexeme { found
+
+Line no 8: Token <ID> Lexeme a found
+
+Line no 8: Token <ASSIGNOP> Lexeme = found
+
+At line no: 8 variable : ID 
+
+a
+
+Line no 8: Token <CONST_INT> Lexeme 56 found
+
+At line no: 8 factor : CONST_INT 
+
+56
+
+At line no: 8 unary_expression : factor 
+
+56
+
+At line no: 8 term : unary_expression 
+
+56
+
+Line no 8: Token <SEMICOLON> Lexeme ; found
+
+At line no: 8 simple_expression : term 
+
+56
+
+At line no: 8 rel_expression : simple_expression 
+
+56
+
+At line no: 8 logic_expression : rel_expression 
+
+56
+
+At line no: 8 expression : variable ASSIGNOP logic_expression 
+
+a=56
+
+At line no: 8 expression_statement : expression SEMICOLON 
+
+a=56;
+
+At line no: 8 statement : expression_statement 
+
+a=56;
+
+At line no: 8 statements : statement 
+
+a=56;
+
+Line no 9: Token <IF> Lexeme if found
+
+Line no 9: Token <LPAREN> Lexeme ( found
+
+Line no 9: Token <ID> Lexeme a found
+
+Line no 9: Token <MULOP> Lexeme % found
+
+At line no: 9 variable : ID 
+
+a
+
+At line no: 9 factor : variable 
+
+a
+
+At line no: 9 unary_expression : factor 
+
+a
+
+At line no: 9 term : unary_expression 
+
+a
+
+Line no 9: Token <CONST_INT> Lexeme 2 found
+
+At line no: 9 factor : CONST_INT 
+
+2
+
+At line no: 9 unary_expression : factor 
+
+2
+
+At line no: 9 term : term MULOP unary_expression 
+
+a%2
+
+Line no 9: Token <RELOP> Lexeme == found
+
+At line no: 9 simple_expression : term 
+
+a%2
+
+Line no 9: Token <CONST_INT> Lexeme 0 found
+
+At line no: 9 factor : CONST_INT 
+
+0
+
+At line no: 9 unary_expression : factor 
+
+0
+
+At line no: 9 term : unary_expression 
+
+0
+
+Line no 9: Token <RPAREN> Lexeme ) found
+
+At line no: 9 simple_expression : term 
+
+0
+
+At line no: 9 rel_expression : simple_expression RELOP simple_expression 
+
+a%2==0
+
+At line no: 9 logic_expression : rel_expression 
+
+a%2==0
+
+At line no: 9 expression : logic_expression 
+
+a%2==0
+
+Line no 10: Token <LCURL> Lexeme { found
+
+Line no 11: Token <PRINTF> Lexeme printf found
+
+At line no: 11 syntax error
+
+Total lines: 11
