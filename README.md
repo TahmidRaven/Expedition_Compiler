@@ -18,8 +18,8 @@ The **Expedition Compiler** is a C-based compiler project built with Lex and Yac
              | |                                                                    | |                      
              |_|                                                                    |_|                      
 
-        Expedition Compiler – For All Those Who Come After
-                Created by TahmidRaven & MehediTorno
+                                Expedition Compiler – For All Those Who Come After
+                                     Created by TahmidRaven & MehediTorno
 ```
 ## 🔧 Features
 
