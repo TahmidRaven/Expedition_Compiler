@@ -14,6 +14,7 @@ version 06 on the way: VOILA
 
 
 * LAB02 
+done with scope and symbol table and symbol info need to integreate this with .y file
 
 
 ```

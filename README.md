@@ -7,6 +7,20 @@
 
 The **Expedition Compiler** is a C-based compiler project built with Lex and Yacc (Flex/Bison), designed for academic and adventurous use. Inspired by the mystery and challenge of fantasy journeys, it parses source code with precision and style.
 
+## ASCII 
+```
+ _____                         _  _  _    _                 _____                           _  _             
+|  ___|                       | |(_)| |  (_)               /  __ \                         (_)| |            
+| |__  __  __ _ __    ___   __| | _ | |_  _   ___   _ __   | /  \/  ___   _ __ ___   _ __   _ | |  ___  _ __ 
+|  __| \ \/ /| '_ \  / _ \ / _` || || __|| | / _ \ | '_ \  | |     / _ \ | '_ ` _ \ | '_ \ | || | / _ \| '__|
+| |___  >  < | |_) ||  __/| (_| || || |_ | || (_) || | | | | \__/\| (_) || | | | | || |_) || || ||  __/| |   
+\____/ /_/\_\| .__/  \___| \__,_||_| \__||_| \___/ |_| |_|  \____/ \___/ |_| |_| |_|| .__/ |_||_| \___||_|   
+             | |                                                                    | |                      
+             |_|                                                                    |_|                      
+
+        Expedition Compiler – For All Those Who Come After
+                Created by TahmidRaven & MehediTorno
+```
 ## 🔧 Features
 
 - Lexical analysis with Flex
@@ -34,15 +48,3 @@ The **Expedition Compiler** is a C-based compiler project built with Lex and Yac
 This compiler is more than a tool — it's a testament. Each token parsed, each rule matched, each bug vanquished is part of an eternal march. We don’t quit. We *compile*.
 
 
-## ASCII 
- _____                         _  _  _    _                 _____                           _  _             
-|  ___|                       | |(_)| |  (_)               /  __ \                         (_)| |            
-| |__  __  __ _ __    ___   __| | _ | |_  _   ___   _ __   | /  \/  ___   _ __ ___   _ __   _ | |  ___  _ __ 
-|  __| \ \/ /| '_ \  / _ \ / _` || || __|| | / _ \ | '_ \  | |     / _ \ | '_ ` _ \ | '_ \ | || | / _ \| '__|
-| |___  >  < | |_) ||  __/| (_| || || |_ | || (_) || | | | | \__/\| (_) || | | | | || |_) || || ||  __/| |   
-\____/ /_/\_\| .__/  \___| \__,_||_| \__||_| \___/ |_| |_|  \____/ \___/ |_| |_| |_|| .__/ |_||_| \___||_|   
-             | |                                                                    | |                      
-             |_|                                                                    |_|                      
-
-        Expedition Compiler – For All Those Who Come After
-                Created by TahmidRaven & MehediTorno
