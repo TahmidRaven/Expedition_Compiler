@@ -48,3 +48,44 @@ The **Expedition Compiler** is a C-based compiler project built with Lex and Yac
 This compiler is more than a tool — it's a testament. Each token parsed, each rule matched, each bug vanquished is part of an eternal march. We don’t quit. We *compile*.
 
 
+```
+       +------------------+
+       |  Source Program  |
+       +------------------+
+              |
+              v
+   +------------------------+
+   |  Lexical Analysis      | <-- Converts source code into tokens.
+   +------------------------+
+              |
+              v
+   +------------------------+
+   |  Syntax Analysis       | <-- Builds a parse tree from the tokens.
+   +------------------------+
+              |
+              v
+   +------------------------+
+   |  Semantic Analysis     | <-- Ensures the program follows language rules (type checking, scope, etc.).
+   +------------------------+
+              |
+              v
+   +------------------------+
+   |  Intermediate Code     | <-- Converts the parse tree to an intermediate representation (e.g., three-address code).
+   +------------------------+
+              |
+              v
+   +------------------------+
+   |  Code Optimization     | <-- Improves the intermediate code for better performance or memory usage.
+   +------------------------+
+              |
+              v
+   +------------------------+
+   |  Code Generation       | <-- Converts the intermediate code into target machine code (assembly or machine code).
+   +------------------------+
+              |
+              v
+   +------------------------+
+   |  Executable Program    | <-- Final executable code ready for execution.
+   +------------------------+
+
+```
