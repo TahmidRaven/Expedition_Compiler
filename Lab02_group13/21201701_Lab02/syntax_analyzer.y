@@ -32,6 +32,41 @@ void yyerror(char *s)
 	outlog<<"At line "<<lines<<" "<<s<<endl<<endl;
 }
 
+// Helper function to parse declaration list and insert variables
+void insert_variables_from_declaration(string type_name, string declaration_list) {
+    // Split declaration_list by commas and process each variable
+    stringstream ss(declaration_list);
+    string item;
+    
+    while(getline(ss, item, ',')) {
+        // Remove leading/trailing whitespace
+        size_t start = item.find_first_not_of(" \t");
+        size_t end = item.find_last_not_of(" \t");
+        if(start == string::npos) continue;
+        item = item.substr(start, end - start + 1);
+        
+        // Check if it's an array
+        size_t bracket_pos = item.find('[');
+        if(bracket_pos != string::npos) {
+            // Array variable
+            string var_name = item.substr(0, bracket_pos);
+            size_t close_bracket = item.find(']');
+            string size_str = item.substr(bracket_pos + 1, close_bracket - bracket_pos - 1);
+            int array_size = stoi(size_str);
+            
+            symbol_info* var_symbol = new symbol_info(var_name, "ID");
+            var_symbol->set_data_type(type_name);
+            var_symbol->set_array_size(array_size);
+            st->insert(var_symbol);
+        } else {
+            // Regular variable
+            symbol_info* var_symbol = new symbol_info(item, "ID");
+            var_symbol->set_data_type(type_name);
+            st->insert(var_symbol);
+        }
+    }
+}
+
 %}
 
 %token IF ELSE FOR WHILE DO BREAK INT CHAR FLOAT DOUBLE VOID RETURN SWITCH CASE DEFAULT CONTINUE PRINTLN ADDOP MULOP INCOP DECOP RELOP ASSIGNOP LOGICOP NOT LPAREN RPAREN LCURL RCURL LTHIRD RTHIRD COMMA SEMICOLON CONST_INT CONST_FLOAT ID
@@ -100,8 +135,17 @@ func_definition : type_specifier ID LPAREN parameter_list RPAREN {
 		
 		st->insert(func_symbol);
 		
-		// Enter new scope for function body (parameters already inserted)
+		// Enter new scope for function body
 		st->enter_scope(outlog);
+		
+		// Insert parameters into the new scope
+		for(int i = 0; i < param_types.size(); i++) {
+			if(!param_names[i].empty()) {
+				symbol_info* param_symbol = new symbol_info(param_names[i], "ID");
+				param_symbol->set_data_type(param_types[i]);
+				st->insert(param_symbol);
+			}
+		}
 	} compound_statement
 		{	
 			outlog<<"At line no: "<<lines<<" func_definition : type_specifier ID LPAREN parameter_list RPAREN compound_statement "<<endl<<endl;
@@ -150,11 +194,6 @@ parameter_list : parameter_list COMMA type_specifier ID
 			// Store parameter information
 			param_types.push_back($3->getname());
 			param_names.push_back($4->getname());
-			
-			// Insert parameter in current scope (will be function scope)
-			symbol_info* param_symbol = new symbol_info($4->getname(), "ID");
-			param_symbol->set_data_type($3->getname());
-			st->insert(param_symbol);
 		}
 		| parameter_list COMMA type_specifier
 		{
@@ -177,11 +216,6 @@ parameter_list : parameter_list COMMA type_specifier ID
 			// Store parameter information
 			param_types.push_back($1->getname());
 			param_names.push_back($2->getname());
-			
-			// Insert parameter in current scope (will be function scope)  
-			symbol_info* param_symbol = new symbol_info($2->getname(), "ID");
-			param_symbol->set_data_type($1->getname());
-			st->insert(param_symbol);
 		}
 		| type_specifier
 		{
@@ -196,17 +230,23 @@ parameter_list : parameter_list COMMA type_specifier ID
 		}
  		;
 
-compound_statement : LCURL statements RCURL
+compound_statement : LCURL {
+			// Enter new scope for every compound statement
+			st->enter_scope(outlog);
+		} statements RCURL
 			{ 
  		    	outlog<<"At line no: "<<lines<<" compound_statement : LCURL statements RCURL "<<endl<<endl;
-				outlog<<"{\n"+$2->getname()+"\n}"<<endl<<endl;
+				outlog<<"{\n"+$3->getname()+"\n}"<<endl<<endl;
 				
-				$$ = new symbol_info("{\n"+$2->getname()+"\n}","comp_stmnt");
+				$$ = new symbol_info("{\n"+$3->getname()+"\n}","comp_stmnt");
 				
 				// Exit scope and print symbol table
 				st->exit_scope(outlog);
  		    }
- 		    | LCURL RCURL
+ 		    | LCURL {
+			// Enter new scope for every compound statement
+			st->enter_scope(outlog);
+		} RCURL
  		    { 
  		    	outlog<<"At line no: "<<lines<<" compound_statement : LCURL RCURL "<<endl<<endl;
 				outlog<<"{\n}"<<endl<<endl;
@@ -225,15 +265,8 @@ var_declaration : type_specifier declaration_list SEMICOLON
 			
 			$$ = new symbol_info($1->getname()+" "+$2->getname()+";","var_dec");
 			
-			// Get the variable type from the type_specifier
-			string var_type = $1->getname();
-			
-			// Extract variable information from declaration_list
-			// This is a simplified approach - you might need to implement a more robust method
-			// to extract variable names and array sizes from the declaration_list
-			
-			// For now, we'll handle single variable declarations
-			// You may need to enhance this based on your specific needs
+			// Insert variables into symbol table
+			insert_variables_from_declaration($1->getname(), $2->getname());
 		 }
  		 ;
 
@@ -602,6 +635,15 @@ arguments : arguments COMMA logic_expression
 
 int main(int argc, char *argv[])
 {
+
+	cout << endl;
+	cout << "===================================================" << endl;
+	cout << "|Expedition Compiler  For All Those Who Come After|" << endl;
+	cout << "|      Created by TahmidRaven & MehediTorno       |" << endl;
+	cout << "===================================================" << endl;
+	cout << endl;
+
+
 	if(argc != 2) 
 	{
 		cout<<"Please input file name"<<endl;

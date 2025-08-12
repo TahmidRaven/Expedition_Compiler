@@ -26,7 +26,7 @@ The main change I made is removing the embedded action from the var_declaration 
 
 ```
 var_declaration : type_specifier {
-        // Stores current variable type
+        // Store current variable type
         current_var_type = $1->getname();
         var_names.clear();
         array_sizes.clear();
