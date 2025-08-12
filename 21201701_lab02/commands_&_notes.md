@@ -15,7 +15,29 @@ version 06 on the way: VOILA
 
 * LAB02 
 done with scope and symbol table and symbol info need to integreate this with .y file
+Every {} should create a new scope table with a unique ID
+what I was doing was only creating function bodies and control structures to create new scopes
 
+Additionally, ``` func_definition``` rules, ensure the function is being inserted into the global scope (scope #1), not a local scope. The function should be inserted before entering the new scope for the function body.
+
+Main issue that I faced was shift reduced by 1/ times* lines
+
+The main change I made is removing the embedded action from the var_declaration rule.
+
+```
+var_declaration : type_specifier {
+        // Store current variable type
+        current_var_type = $1->getname();
+        var_names.clear();
+        array_sizes.clear();
+    } declaration_list SEMICOLON
+```
+
+Change was made to ``` var_declaration : type_specifier declaration_list SEMICOLON ```
+
+The embedded action in the middle of a grammar rule can cause shift/reduce conflicts 
+because the parser doesn't know whether to continue parsing the rule or execute the action. 
+This was causing my parser to fail when it encountered the ```declaration_list``` after ```type_specifier INT```.
 
 ```
 rm -f y.tab.c y.tab.h y.output lex.yy.c a.out y.o l.o my_log.txt

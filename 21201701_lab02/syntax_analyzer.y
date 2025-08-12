@@ -635,6 +635,15 @@ arguments : arguments COMMA logic_expression
 
 int main(int argc, char *argv[])
 {
+
+	cout << endl;
+	cout << "===================================================" << endl;
+	cout << "|Expedition Compiler  For All Those Who Come After|" << endl;
+	cout << "|      Created by TahmidRaven & MehediTorno       |" << endl;
+	cout << "===================================================" << endl;
+	cout << endl;
+
+
 	if(argc != 2) 
 	{
 		cout<<"Please input file name"<<endl;
