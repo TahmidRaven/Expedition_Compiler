@@ -1,4 +1,4 @@
-#  Expedition Compiler
+#  Expedition Compiler = CSE420 COMPILER DESIGN Project
 
 
 **For all those who come after.**
