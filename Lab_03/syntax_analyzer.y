@@ -961,7 +961,9 @@ int main(int argc, char *argv[])
 
 	yyparse();
 	
-	outlog<<endl<<"Total lines: "<<lines<<endl;
+	outlog<<endl<<"Total lines in Expedition Compiler : " <<lines<<endl;
+	outlog<< "Total errors in Expedition Compiler : " << error_count << endl << endl;
+
 	
 	// Write error summary to error log
 	errorlog << "Total errors: " << error_count << endl << endl;
